@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9B91C3371EEEA83D00492DC5 /* DKProgressViewHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B91C3361EEEA83D00492DC5 /* DKProgressViewHUD.swift */; };
 		9B91C3551EEF823900492DC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B91C3541EEF823900492DC5 /* AppDelegate.swift */; };
 		9B91C3571EEF823900492DC5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B91C3561EEF823900492DC5 /* ViewController.swift */; };
 		9B91C35A1EEF823900492DC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B91C3581EEF823900492DC5 /* Main.storyboard */; };
@@ -15,13 +14,13 @@
 		9B91C35F1EEF823900492DC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B91C35D1EEF823900492DC5 /* LaunchScreen.storyboard */; };
 		9B91C3641EEF828A00492DC5 /* DKProgressViewHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B91C3291EEEA7EE00492DC5 /* DKProgressViewHUD.framework */; };
 		9B91C3681EEF974300492DC5 /* DKProgressViewHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B91C32C1EEEA7EE00492DC5 /* DKProgressViewHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9B91C36B1EF1139D00492DC5 /* DKProgressViewHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B91C36A1EF1139D00492DC5 /* DKProgressViewHUD.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9B91C3291EEEA7EE00492DC5 /* DKProgressViewHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DKProgressViewHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B91C32C1EEEA7EE00492DC5 /* DKProgressViewHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DKProgressViewHUD.h; sourceTree = "<group>"; };
 		9B91C32D1EEEA7EF00492DC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9B91C3361EEEA83D00492DC5 /* DKProgressViewHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKProgressViewHUD.swift; sourceTree = "<group>"; };
 		9B91C3521EEF823900492DC5 /* DKHUDDEMO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DKHUDDEMO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B91C3541EEF823900492DC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B91C3561EEF823900492DC5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,6 +28,7 @@
 		9B91C35B1EEF823900492DC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B91C35E1EEF823900492DC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B91C3601EEF823900492DC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9B91C36A1EF1139D00492DC5 /* DKProgressViewHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKProgressViewHUD.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				9B91C32C1EEEA7EE00492DC5 /* DKProgressViewHUD.h */,
-				9B91C3361EEEA83D00492DC5 /* DKProgressViewHUD.swift */,
+				9B91C36A1EF1139D00492DC5 /* DKProgressViewHUD.swift */,
 				9B91C32D1EEEA7EF00492DC5 /* Info.plist */,
 			);
 			path = DKProgressViewHUD;
@@ -205,7 +205,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B91C3371EEEA83D00492DC5 /* DKProgressViewHUD.swift in Sources */,
+				9B91C36B1EF1139D00492DC5 /* DKProgressViewHUD.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +436,7 @@
 				9B91C3621EEF823900492DC5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreGraphics
+import QuartzCore
 
 public let DKProgressMaxOffset = 10000.0
 let DKDefaultPadding:CGFloat = 4.0

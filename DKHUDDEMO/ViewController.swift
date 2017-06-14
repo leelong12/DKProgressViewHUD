@@ -141,7 +141,7 @@ class ViewController: UIViewController {
         hud.label?.text = NSLocalizedString("Loading...", comment:"HUD loading title");
         
         // Set up NSProgress
-        let progressObject = Progress.discreteProgress(totalUnitCount: 100)
+        let progressObject = Progress.init(totalUnitCount: 100)
         hud.progressObject = progressObject;
         
         // Configure a cancel button.

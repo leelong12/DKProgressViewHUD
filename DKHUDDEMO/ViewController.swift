@@ -52,7 +52,7 @@ class ViewController: UIViewController {
     
     //MARK - Examples
     
-    func indeterminateExample() -> Void {
+    @objc func indeterminateExample() -> Void {
         // Show the HUD on the root view (self.view is a scrollable table view and thus not suitable,
         // as the HUD would move with the content as we scroll).
         let hud = DKProgressViewHUD.showHUD(view: (self.navigationController?.view)!, animated: true)
@@ -70,7 +70,7 @@ class ViewController: UIViewController {
         }
     }
             
-    func labelExample()->Void{
+    @objc func labelExample()->Void{
         let hud = DKProgressViewHUD.showHUD(view: (self.navigationController?.view)!, animated: true)
         // Set the label text.
         hud.label?.text = NSLocalizedString("Loading...", tableName: "HUD loading title", comment: "HUD loading title");
@@ -88,7 +88,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func detailsLabelExample() -> Void {
+    @objc func detailsLabelExample() -> Void {
         let hud = DKProgressViewHUD.showHUD(view: (self.navigationController?.view)!, animated: true)
         // Set the label text.
         hud.label?.text = NSLocalizedString("Loading...", comment:"HUD loading title");
@@ -118,7 +118,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func determinateExample() -> Void {
+    @objc func determinateExample() -> Void {
         let hud = DKProgressViewHUD.showHUD(view: (self.navigationController?.view)!, animated: true)
         // Set the determinate mode to show task progress.
         hud.mode = .determinate;
@@ -134,7 +134,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func determinateNSProgressExample() -> Void {
+    @objc func determinateNSProgressExample() -> Void {
         let hud = DKProgressViewHUD.showHUD(view: (self.navigationController?.view)!, animated: true)
         // Set the determinate mode to show task progress.
         hud.mode = .determinate;
@@ -159,7 +159,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func annularDeterminateExample() -> Void {
+    @objc func annularDeterminateExample() -> Void {
         let hud = DKProgressViewHUD.showHUD(view: (self.navigationController?.view)!, animated: true)
         // Set the annular determinate mode to show task progress.
         hud.mode = .annularDeterminate;
@@ -175,7 +175,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func barDeterminateExample() -> Void {
+    @objc func barDeterminateExample() -> Void {
         let hud = DKProgressViewHUD.showHUD(view: (self.navigationController?.view)!, animated: true)
         // Set the bar determinate mode to show task progress.
         hud.mode = .determinateHorizontalBar;
@@ -191,7 +191,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func customViewExample() -> Void {
+    @objc func customViewExample() -> Void {
         let hud = DKProgressViewHUD.showHUD(view: (self.navigationController?.view)!, animated: true)
         // Set the custom view mode to show any view.
         hud.mode = .customView;
@@ -199,7 +199,6 @@ class ViewController: UIViewController {
         let image = UIImage(named:"Checkmark")?.withRenderingMode(.alwaysTemplate)
         hud.customView = UIImageView.init(image: image)
         // Looks a bit nicer if we make it square.
-        hud.minSize = CGSize.init(width: 50, height: 50)
         hud.isSquare = true;
         // Optional label text.
         hud.label?.text = NSLocalizedString("Done", comment:"HUD done title");
@@ -207,7 +206,7 @@ class ViewController: UIViewController {
         hud.hide(true, afterDelay: 3.0)
     }
     
-    func textExample() -> Void {
+    @objc func textExample() -> Void {
         let hud = DKProgressViewHUD.showHUD(view: (self.navigationController?.view)!, animated: true)
         // Set the text mode to show only text.
         hud.mode = .text;
@@ -218,7 +217,7 @@ class ViewController: UIViewController {
         hud.hide(true, afterDelay: 3.0)
     }
     
-    func cancelationExample() -> Void {
+    @objc func cancelationExample() -> Void {
         let hud = DKProgressViewHUD.showHUD(view: (self.navigationController?.view)!, animated: true)
         // Set the determinate mode to show task progress.
         hud.mode = .determinate;
@@ -238,12 +237,11 @@ class ViewController: UIViewController {
         }
     }
     
-    func modeSwitchingExample() -> Void {
+    @objc func modeSwitchingExample() -> Void {
         let hud = DKProgressViewHUD.showHUD(view: (self.navigationController?.view)!, animated: true)
         // Set some text to show the initial status.
         hud.label?.text = NSLocalizedString("Preparing...", comment:"HUD preparing title");
         // Will look best, if we set a minimum size.
-        hud.minSize = CGSize.init(width: 150, height: 100)
 //        hud.offset = CGPoint.init(x: 0, y: 1000)
         DispatchQueue.global(qos: .userInitiated).async {
             // Do something useful in the background
@@ -256,17 +254,16 @@ class ViewController: UIViewController {
         }
     }
     
-    func networkingExample() -> Void {
+    @objc func networkingExample() -> Void {
         let hud = DKProgressViewHUD.showHUD(view: (self.navigationController?.view)!, animated: true)
         // Set some text to show the initial status.
         hud.label?.text = NSLocalizedString("Preparing...", comment:"HUD preparing title");
         // Will look best, if we set a minimum size.
-        hud.minSize = CGSize.init(width: 150, height: 100)
         
         self.doSomeNetworkWorkWithProgress()
     }
     
-    func dimBackgroundExample() -> Void {
+    @objc func dimBackgroundExample() -> Void {
         let hud = DKProgressViewHUD.showHUD(view: (self.navigationController?.view)!, animated: true)
         // Change the background view style and color.
         hud.backgroundView?.style = .solidColor;
@@ -282,7 +279,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func colorExample() -> Void {
+    @objc func colorExample() -> Void {
         let hud = DKProgressViewHUD.showHUD(view: (self.navigationController?.view)!, animated: true)
         hud.contentColor = UIColor.init(red: 0, green: 0.6, blue: 0.7, alpha: 1)
         
@@ -330,7 +327,10 @@ class ViewController: UIViewController {
     }
     
     func doSomeWorkWithMixedProgress() -> Void {
-        let hud = DKProgressViewHUD.HUD(view: (self.navigationController?.view)!)
+        var hud:DKProgressViewHUD? = nil
+        DispatchQueue.main.async {
+            hud = DKProgressViewHUD.HUD(view: (self.navigationController?.view)!)
+        }
         // Indeterminate mode
         sleep(2);
         // Switch to determinate mode
@@ -369,7 +369,7 @@ class ViewController: UIViewController {
         task.resume()
     }
     
-    func cancelWork(_ sender:Any) -> Void {
+    @objc func cancelWork(_ sender:Any) -> Void {
         self.isCanceled = true
     }
 

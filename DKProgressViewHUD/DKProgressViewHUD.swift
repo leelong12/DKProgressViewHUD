@@ -137,7 +137,7 @@ public class DKRoundProgressView: UIView {
      * Progress (0.0 to 1.0)
      */
     private var _progress: Float = 0.0
-    public var progress: Float{
+    @objc public var progress: Float{
         get{
             return _progress
         }set(newValue){
@@ -261,7 +261,7 @@ public class DKBarProgressView: UIView {
      * Progress (0.0 to 1.0)
      */
     private var _progress:Float = 0.0
-    public var progress: Float{
+    @objc public var progress: Float{
         get{
             return _progress
         }set(newValue){
@@ -562,7 +562,7 @@ public class DKProgressViewHUD: UIView {
     /**
      * The minimum size of the HUD bezel. Defaults to CGSizeZero (no minimum size).
      */
-    private var _minSize = CGSize.zero
+    private var _minSize = CGSize.init(width: 50, height: 50)
     public var minSize: CGSize{
         get{
             return _minSize
@@ -613,7 +613,7 @@ public class DKProgressViewHUD: UIView {
      * The progress of the progress indicator, from 0.0 to 1.0. Defaults to 0.0.
      */
     private var _progress: Float = 0.0
-    public var progress:Float {
+    @objc public var progress:Float {
         get{
             return _progress
         }set(newValue){
@@ -657,7 +657,7 @@ public class DKProgressViewHUD: UIView {
         }
     }
     
-    func updateProgressFromProgressObject() -> Void {
+    @objc func updateProgressFromProgressObject() -> Void {
         self.progress = Float(self.progressObject!.fractionCompleted);
     }
     
@@ -844,18 +844,18 @@ public class DKProgressViewHUD: UIView {
     }
     //MARK - Timer callbacks
     
-    func handleGraceTimer(_ theTimer:Timer) -> Void {
+    @objc func handleGraceTimer(_ theTimer:Timer) -> Void {
         // Show the HUD only if the task is still running
         if !self.isFinished {
             showUsingAnimation(self.isUseAnimation)
         }
     }
     
-    func handleMinShowTimer(_ theTimer:Timer) -> Void {
+    @objc func handleMinShowTimer(_ theTimer:Timer) -> Void {
         hideUsingAnimation(self.isUseAnimation)
     }
     
-    func handleHideTimer(_ timer:Timer) -> Void {
+    @objc func handleHideTimer(_ timer:Timer) -> Void {
         hideAnimated(timer.userInfo as! Bool)
     }
     
@@ -1010,10 +1010,10 @@ public class DKProgressViewHUD: UIView {
         
         for view in [label,detailsLabel,(button as UIView?)] {
             view?.translatesAutoresizingMaskIntoConstraints = false
-            view?.setContentHuggingPriority(998.0, for: .horizontal)
-            view?.setContentHuggingPriority(998.0, for: .vertical)
-            view?.setContentCompressionResistancePriority(998.0, for: .horizontal)
-            view?.setContentCompressionResistancePriority(998.0, for: .vertical)
+            view?.setContentHuggingPriority(UILayoutPriority(rawValue: 998.0), for: .horizontal)
+            view?.setContentHuggingPriority(UILayoutPriority(rawValue: 998.0), for: .vertical)
+            view?.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 998.0), for: .horizontal)
+            view?.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 998.0), for: .vertical)
             bezelView?.addSubview(view!)
         }
         
@@ -1076,8 +1076,8 @@ public class DKProgressViewHUD: UIView {
             }
         }
 
-        indicator?.setContentHuggingPriority(998.0, for: .horizontal)
-        indicator?.setContentHuggingPriority(998.0, for: .vertical)
+        indicator?.setContentHuggingPriority(UILayoutPriority(rawValue: 998.0), for: .horizontal)
+        indicator?.setContentHuggingPriority(UILayoutPriority(rawValue: 998.0), for: .vertical)
         updateViewsForColor(self.contentColor)
         setNeedsUpdateConstraints()
     }
@@ -1168,41 +1168,35 @@ public class DKProgressViewHUD: UIView {
         var centeringConstraints :Array<NSLayoutConstraint> = Array()
         centeringConstraints.append(NSLayoutConstraint(item: self.bezelView!, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: self.offset.x))
         centeringConstraints.append(NSLayoutConstraint(item: self.bezelView!, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: self.offset.y))
-        self.applyPriority(priority: 998.0, constraints: &centeringConstraints)
+        self.applyPriority(priority: UILayoutPriority(rawValue: 997.0), constraints: &centeringConstraints)
         self.addConstraints(centeringConstraints)
         
         // Ensure minimum side margin is kept
-        var sideConstraints :Array<NSLayoutConstraint> = Array()
-        sideConstraints += NSLayoutConstraint.constraints(withVisualFormat: "|-(>=margin)-[bezel]-(>=margin)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: Dictionary(dictionaryLiteral: ("bezel",self.bezelView!)))
-        sideConstraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(>=margin)-[bezel]-(>=margin)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: Dictionary(dictionaryLiteral: ("bezel",self.bezelView!)))
-
-        self.applyPriority(priority: 999.0, constraints: &sideConstraints)
-        addConstraints(sideConstraints)
+        var sideConstraints1 :Array<NSLayoutConstraint> = Array()
+        sideConstraints1 += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(>=margin)-[bezel]-(>=margin)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: Dictionary(dictionaryLiteral: ("bezel",self.bezelView!)))
+        
+        self.applyPriority(priority: UILayoutPriority(rawValue: 998.0), constraints: &sideConstraints1)
+        addConstraints(sideConstraints1)
         
         if self.minSize != CGSize.zero {
             var minSizeConstraints :Array<NSLayoutConstraint> = Array()
             minSizeConstraints.append(NSLayoutConstraint(item: self.bezelView!, attribute: .width, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: self.minSize.width))
             minSizeConstraints.append(NSLayoutConstraint(item: self.bezelView!, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: self.minSize.height))
-            self.applyPriority(priority: 997.0, constraints: &minSizeConstraints)
+//            self.applyPriority(priority: UILayoutPriority(rawValue: 997.0), constraints: &minSizeConstraints)
             self.bezelConstraints += minSizeConstraints
         }
-        // Square aspect ratio, if set
-        if (self.isSquare) {
-            let square = NSLayoutConstraint(item: self.bezelView!, attribute: .height, relatedBy: .equal, toItem: self.bezelView!, attribute: .width, multiplier: 1.0, constant: 0)
-            square.priority = 997.0
-            self.bezelConstraints.append(square)
-        }
+        
         // Top and bottom spacing
         let topSpacerConstraint = NSLayoutConstraint(item: self.topSpacer!, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: self.margin)
-        topSpacerConstraint.priority = 999.0
+//        topSpacerConstraint.priority = UILayoutPriority(rawValue: 999.0)
         self.topSpacer?.addConstraint(topSpacerConstraint)
         let bottomSpacerConstraint = NSLayoutConstraint(item: self.bottomSpacer!, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: self.margin)
-        bottomSpacerConstraint.priority = 999.0
+//        bottomSpacerConstraint.priority = UILayoutPriority(rawValue: 999.0)
         self.bottomSpacer?.addConstraint(bottomSpacerConstraint)
         
         // Top and bottom spaces should be equal
         let topAndBottom = NSLayoutConstraint(item: self.topSpacer!, attribute: .height, relatedBy: .equal, toItem: self.bottomSpacer!, attribute: .height, multiplier: 1.0, constant: 0)
-        topAndBottom.priority = 999.0
+//        topAndBottom.priority = UILayoutPriority(rawValue: 999.0)
         self.bezelConstraints.append(topAndBottom)
         // Layout subviews in bezel
         self.paddingConstraints.removeAll()
@@ -1210,31 +1204,43 @@ public class DKProgressViewHUD: UIView {
             // Center in bezel
             self.bezelConstraints.append(NSLayoutConstraint(item: view!, attribute: .centerX, relatedBy: .equal, toItem: self.bezelView!, attribute: .centerX, multiplier: 1.0, constant: 0))
             // Ensure the minimum edge margin is kept
-            var viewConstraints = NSLayoutConstraint.constraints(withVisualFormat: "|-(>=margin)-[view]-(>=margin)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: Dictionary(dictionaryLiteral: ("view", view!)))
-            self.applyPriority(priority: 999.0, constraints: &viewConstraints)
+            let viewConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=margin)-[view]", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: Dictionary(dictionaryLiteral: ("view", view!)))
+//            self.applyPriority(priority: UILayoutPriority(rawValue: 999.0), constraints: &viewConstraints)
             self.bezelConstraints += viewConstraints
             // Element spacing
             if (index == 0) {
                 // First, ensure spacing to bezel edge
                 let topConstraint = NSLayoutConstraint(item: view!, attribute: .top, relatedBy: .equal, toItem: self.bezelView!, attribute: .top, multiplier: 1.0, constant: 0)
-                topConstraint.priority = 999.0
+//                topConstraint.priority = UILayoutPriority(rawValue: 999.0)
                 self.bezelConstraints.append(topConstraint)
             }else if (index == subview.count - 1){
                 // Last, ensure spacing to bezel edge
                 let bottomConstraint = NSLayoutConstraint(item: view!, attribute: .bottom, relatedBy: .equal, toItem: self.bezelView!, attribute: .bottom, multiplier: 1.0, constant: 0)
-                bottomConstraint.priority = 999.0
+//                bottomConstraint.priority = UILayoutPriority(rawValue: 999.0)
                 self.bezelConstraints.append(bottomConstraint)
             }
             if (index > 0){
                 // Has previous
                 let padding = NSLayoutConstraint(item: view!, attribute: .top, relatedBy: .equal, toItem: subview[index - 1], attribute: .bottom, multiplier: 1.0, constant: 0)
-                padding.priority = 999.0
+//                padding.priority = UILayoutPriority(rawValue: 999.0)
                 self.bezelConstraints.append(padding)
                 self.paddingConstraints.append(padding)
             }
         }
+        // Square aspect ratio, if set
+        if (self.isSquare) {
+            let square = NSLayoutConstraint(item: self.bezelView!, attribute: .height, relatedBy: .equal, toItem: self.bezelView!, attribute: .width, multiplier: 1.0, constant: 0)
+            square.priority = UILayoutPriority(rawValue: 998.0)
+            self.bezelConstraints.append(square)
+        }
         self.bezelView?.addConstraints(self.bezelConstraints)
         self.updatePaddingConstraints()
+        
+        // Ensure minimum side margin is kept
+        var sideConstraints2 :Array<NSLayoutConstraint> = Array()
+        sideConstraints2 += NSLayoutConstraint.constraints(withVisualFormat: "|-(>=margin)-[bezel]-(>=margin)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: Dictionary(dictionaryLiteral: ("bezel",self.bezelView!)))
+        self.applyPriority(priority: UILayoutPriority(rawValue: 998.0), constraints: &sideConstraints2)
+        addConstraints(sideConstraints2)
         
         super.updateConstraints()
     }
@@ -1276,7 +1282,7 @@ public class DKProgressViewHUD: UIView {
         nc.removeObserver(self, name: NSNotification.Name.UIApplicationDidChangeStatusBarOrientation, object: nil)
     }
     
-    func statusBarOrientationDidChange(notification:NSNotification) -> Void {
+    @objc func statusBarOrientationDidChange(notification:NSNotification) -> Void {
         if self.superview != nil {
             self.updateForCurrentOrientationAnimated(true)
         }
